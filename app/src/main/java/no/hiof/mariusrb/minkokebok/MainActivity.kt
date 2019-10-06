@@ -1,9 +1,9 @@
 package no.hiof.mariusrb.minkokebok
 
-import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.ListView
+import androidx.recyclerview.widget.LinearLayoutManager
+import kotlinx.android.synthetic.main.activity_main.*
 import no.hiof.mariusrb.minkokebok.Adapter.RecipeAdapter
 
 class MainActivity : AppCompatActivity() {
@@ -12,9 +12,9 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val listView = findViewById<ListView>(R.id.main_recipe_list)
+        recyclerView_main.layoutManager = LinearLayoutManager(this)
+        recyclerView_main.adapter = RecipeAdapter()
 
-        listView.adapter = RecipeAdapter(this)
     }
 
 }

@@ -6,46 +6,40 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
 import android.widget.TextView
+import androidx.recyclerview.widget.RecyclerView
+import kotlinx.android.synthetic.main.recipe_list.view.*
+import no.hiof.mariusrb.minkokebok.Model.Recipe
 import no.hiof.mariusrb.minkokebok.R
 
-class RecipeAdapter(context: Context) : BaseAdapter() {
+class RecipeAdapter: RecyclerView.Adapter<RecipeAdapter.CustomViewHolder>() {
 
-    private val mContext: Context
+    val recipeTitles = listOf<String>("Pizza", "Lasagne", "Bolognese", "Boller", "Kake", "Smør")
 
-    private val recipes = arrayListOf<String>(
-        "Pizza", "Boller", "Pasta", "Lasagne", "Laks"
-    )
 
-    init {
-        this.mContext = context
-    }
-    //decides how many rows that are rendering
-    override fun getCount(): Int {
-        return recipes.size
+    override fun getItemCount(): Int {
+        //Number of items
+        return recipeTitles.size
     }
 
-    override fun getItemId(position: Int): Long {
-        return position.toLong()
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CustomViewHolder {
+        val layoutInflater = LayoutInflater.from(parent.context)
+        val cellForRow = layoutInflater.inflate(R.layout.recipe_list, parent, false)
+
+        return CustomViewHolder(cellForRow)
     }
 
-    override fun getItem(position: Int): Any {
-        return "Test string"
+    override fun onBindViewHolder(holder: CustomViewHolder, position: Int) {
+        val recipeTitles = recipeTitles.get(position)
+        holder.view.Recipe_title_textView.text = recipeTitles
     }
 
-    //render each row
-    override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
 
-        val layoutinflater = LayoutInflater.from(mContext)
-
-        val mainRow = layoutinflater.inflate(R.layout.recipe_main_row, parent, false)
-        val positionTextView = mainRow.findViewById<TextView>(R.id.position_textview)
-        positionTextView.text = "Oppskrift nummer: $position"
-        val titleTextView = mainRow.findViewById<TextView>(R.id.name_textview)
-        titleTextView.text = recipes.get(position)
-
-        return mainRow
-
+    class CustomViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
 
     }
-
 }
+
+
+
+
+
