@@ -20,7 +20,7 @@ class LoginScreen : AppCompatActivity() {
     }
 
     fun signupButton(view: View) {
-        //TODO: add logic for signing up + firebase connection
+        //TODO("not implemented")
     }
 
 

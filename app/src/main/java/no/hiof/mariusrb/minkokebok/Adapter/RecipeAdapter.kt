@@ -1,6 +1,7 @@
 package no.hiof.mariusrb.minkokebok.Adapter
 
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,13 +9,14 @@ import android.widget.BaseAdapter
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.recipe_list.view.*
+import no.hiof.mariusrb.minkokebok.MainActivity
 import no.hiof.mariusrb.minkokebok.Model.Recipe
 import no.hiof.mariusrb.minkokebok.R
+import no.hiof.mariusrb.minkokebok.RecipeDetailActivity
 
 class RecipeAdapter: RecyclerView.Adapter<RecipeAdapter.CustomViewHolder>() {
 
     val recipeTitles = listOf<String>("Pizza", "Lasagne", "Bolognese", "Boller", "Kake", "Smør")
-
 
     override fun getItemCount(): Int {
         //Number of items
@@ -33,9 +35,17 @@ class RecipeAdapter: RecyclerView.Adapter<RecipeAdapter.CustomViewHolder>() {
         holder.view.Recipe_title_textView.text = recipeTitles
     }
 
-
     class CustomViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
 
+        init {
+            view.setOnClickListener {
+                println("Test")
+
+                val intent = Intent(view.context, RecipeDetailActivity::class.java)
+
+                view.context.startActivity(intent)
+            }
+        }
     }
 }
 
