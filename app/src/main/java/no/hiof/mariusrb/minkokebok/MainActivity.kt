@@ -13,7 +13,6 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         val listView = findViewById<ListView>(R.id.main_recipe_list)
-        listView.setBackgroundColor(Color.BLUE)
 
         listView.adapter = RecipeAdapter(this)
     }
