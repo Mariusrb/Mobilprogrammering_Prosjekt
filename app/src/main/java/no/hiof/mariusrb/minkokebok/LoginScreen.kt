@@ -15,7 +15,7 @@ class LoginScreen : AppCompatActivity() {
 
     fun loginButton(view: View) {
         //TODO: Add firebase connection for handling users
-        val changePage = Intent(this, RecipeListFragment::class.java)
+        val changePage = Intent(this, MainActivity::class.java)
         startActivity(changePage)
     }
 
