@@ -18,6 +18,7 @@ class RecipeAdapter: RecyclerView.Adapter<RecipeAdapter.CustomViewHolder>() {
 
     val recipeTitles = listOf<String>("Pizza", "Lasagne", "Bolognese", "Boller", "Kake", "Smør")
 
+
     override fun getItemCount(): Int {
         //Number of items
         return recipeTitles.size
@@ -31,17 +32,25 @@ class RecipeAdapter: RecyclerView.Adapter<RecipeAdapter.CustomViewHolder>() {
     }
 
     override fun onBindViewHolder(holder: CustomViewHolder, position: Int) {
+
         val recipeTitles = recipeTitles.get(position)
         holder.view.Recipe_title_textView.text = recipeTitles
+
+        holder.recipe = recipeTitles
     }
 
-    class CustomViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
+    class CustomViewHolder(val view: View, var recipe: String? = null) : RecyclerView.ViewHolder(view) {
+
+        companion object{
+            val RECIPE_TITLE_KEY = "RECIPE_TITLE"
+        }
 
         init {
             view.setOnClickListener {
-                println("Test")
 
                 val intent = Intent(view.context, RecipeDetailActivity::class.java)
+
+                intent.putExtra(RECIPE_TITLE_KEY, recipe)
 
                 view.context.startActivity(intent)
             }

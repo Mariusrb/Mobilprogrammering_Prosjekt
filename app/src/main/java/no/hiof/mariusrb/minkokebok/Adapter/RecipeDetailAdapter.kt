@@ -10,7 +10,7 @@ import no.hiof.mariusrb.minkokebok.R
 class RecipeDetailAdapter : RecyclerView.Adapter<RecipeDetailAdapter.RecipeDetailViewHolder>() {
 
     override fun getItemCount(): Int {
-        return 5
+        return 1
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecipeDetailViewHolder {
@@ -18,9 +18,6 @@ class RecipeDetailAdapter : RecyclerView.Adapter<RecipeDetailAdapter.RecipeDetai
         val layoutInflater = LayoutInflater.from(parent.context)
         val customView = layoutInflater.inflate(R.layout.recipe_detail_row, parent, false)
 
-  //      val blueView = View(parent?.context)
-  //      blueView.setBackgroundColor(Color.BLUE)
-  //      blueView.minimumHeight = 100
         return RecipeDetailViewHolder(customView)
     }
 
@@ -30,6 +27,5 @@ class RecipeDetailAdapter : RecyclerView.Adapter<RecipeDetailAdapter.RecipeDetai
 
     class RecipeDetailViewHolder(val customView: View) :
         RecyclerView.ViewHolder(customView) {
-
     }
 }

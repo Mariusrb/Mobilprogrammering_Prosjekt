@@ -5,6 +5,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.activity_main.*
+import no.hiof.mariusrb.minkokebok.Adapter.RecipeAdapter
 import no.hiof.mariusrb.minkokebok.Adapter.RecipeDetailAdapter
 
 class RecipeDetailActivity : AppCompatActivity() {
@@ -15,5 +16,9 @@ class RecipeDetailActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         recyclerView_main.layoutManager = LinearLayoutManager(this)
         recyclerView_main.adapter = RecipeDetailAdapter()
+
+        //change nav bar title
+        val navBarTitle = intent.getStringExtra(RecipeAdapter.CustomViewHolder.RECIPE_TITLE_KEY)
+        supportActionBar?.title = navBarTitle
     }
 }
