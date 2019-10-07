@@ -44,14 +44,10 @@ class RecipeAdapter: RecyclerView.Adapter<RecipeAdapter.CustomViewHolder>() {
         companion object{
             val RECIPE_TITLE_KEY = "RECIPE_TITLE"
         }
-
         init {
             view.setOnClickListener {
-
                 val intent = Intent(view.context, RecipeDetailActivity::class.java)
-
                 intent.putExtra(RECIPE_TITLE_KEY, recipe)
-
                 view.context.startActivity(intent)
             }
         }

@@ -15,6 +15,8 @@ class MainActivity : AppCompatActivity() {
         recyclerView_main.layoutManager = LinearLayoutManager(this)
         recyclerView_main.adapter = RecipeAdapter()
 
+        //TODO("Make a button -> new layout -> User input -> add to array -> update and show in list")
+
     }
 
 
