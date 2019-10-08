@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
@@ -25,7 +26,7 @@ class RecipeListFragment : Fragment(), View.OnClickListener {
         savedInstanceState: Bundle?
     ): View? {
 
-        val view : View = inflater!!.inflate(R.layout.fragment_recipe_list, container,false)
+        val view : View = inflater.inflate(R.layout.fragment_recipe_list, container,false)
         val btn : Button = view.findViewById(R.id.addRecipeButton)
         btn.setOnClickListener(this)
         return view
@@ -39,6 +40,8 @@ class RecipeListFragment : Fragment(), View.OnClickListener {
 
     override fun onClick(v: View?) {
         //TODO:("Implement new layout and logic to get and save user input into list")
+
+        Toast.makeText(context, "Knappen fungerer", Toast.LENGTH_LONG).show()
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
