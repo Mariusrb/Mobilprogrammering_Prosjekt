@@ -15,40 +15,26 @@ class RecipeAdapter(private val items : ArrayList<Recipe>, var clickListener: Vi
     }
 
     override fun onCreateViewHolder(parent: ViewGroup,viewType: Int): RecipeAdapter.RecipeViewHolder {
-
         val itemView = LayoutInflater.from(parent.context).inflate(R.layout.recipe_list_item, parent, false)
-
         return RecipeViewHolder(itemView)
     }
 
     override fun onBindViewHolder(holder: RecipeAdapter.RecipeViewHolder, position: Int) {
         val currentRecipe = items[position]
-
         holder.bind(currentRecipe, clickListener)
-
     }
 
     class RecipeViewHolder(view : View) : RecyclerView.ViewHolder(view){
  //       private val recipePictureImageView : ImageView = view.recipePictureView
         private val recipeTitleTextView : TextView = view.recipe_title
      //   private val recipeDescriptionTextView : TextView = view.recipe_description_title
-
         fun bind(item:Recipe, clickListener: View.OnClickListener){
-
           //  recipePictureImageView.setImageResource()
             recipeTitleTextView.text = item.title
         //    recipeDescriptionTextView.text = item.description
-
             this.itemView.setOnClickListener(clickListener)
         }
-
-
-
-
     }
-
-
-
 }
 
 

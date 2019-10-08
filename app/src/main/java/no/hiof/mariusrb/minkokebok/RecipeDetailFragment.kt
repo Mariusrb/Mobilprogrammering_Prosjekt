@@ -19,21 +19,16 @@ class RecipeDetailFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_recipe_detail, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        val arguments = arguments?.let{ RecipeDetailFragmentArgs.fromBundle(it)}
-
+        val arguments = arguments?.let { RecipeDetailFragmentArgs.fromBundle(it) }
         val recipe = Recipe.getRecipes()[arguments!!.uid]
-
         recipe_detail_title.text = recipe.title
         recipe_description_title.text = recipe.description
-      //  recipePictureView.setImageResource(recipe.picture)
+        //TODO:("Add picture taken by user after permission is granted")
+        //  recipePictureView.setImageResource(recipe.picture)
     }
-
-
 }
