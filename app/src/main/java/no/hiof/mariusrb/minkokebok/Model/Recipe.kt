@@ -1,6 +1,5 @@
 package no.hiof.mariusrb.minkokebok.Model
 
-import android.content.Intent
 import java.io.Serializable
 
 data class Recipe(val uid: Int, var title: String, var description: String) : Serializable {
@@ -22,7 +21,7 @@ data class Recipe(val uid: Int, var title: String, var description: String) : Se
                 "Beste bolognesen"
             )
             titles.forEachIndexed { index, title ->
-                val aRecipe = Recipe(index, title, title + " " + description)
+                val aRecipe = Recipe(index, title, title + "\n" + description.get(index))
 
                 data.add(aRecipe)
             }

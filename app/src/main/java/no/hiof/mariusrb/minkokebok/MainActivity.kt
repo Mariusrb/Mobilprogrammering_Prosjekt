@@ -1,10 +1,7 @@
 package no.hiof.mariusrb.minkokebok
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.recyclerview.widget.LinearLayoutManager
-import kotlinx.android.synthetic.main.activity_main.*
-import no.hiof.mariusrb.minkokebok.Adapter.RecipeAdapter
+import androidx.appcompat.app.AppCompatActivity
 
 class MainActivity : AppCompatActivity() {
 
@@ -12,8 +9,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        recyclerView_main.layoutManager = LinearLayoutManager(this)
-        recyclerView_main.adapter = RecipeAdapter()
+     //   recyclerView_main.layoutManager = LinearLayoutManager(this)
+     //   recyclerView_main.adapter = RecipeAdapter()
 
         //TODO("Make a button -> new layout -> User input -> add to array -> update and show in list")
 

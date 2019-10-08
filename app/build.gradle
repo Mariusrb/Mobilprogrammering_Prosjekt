@@ -43,3 +43,5 @@ dependencies {
     implementation 'androidx.navigation:navigation-ui-ktx:2.1.0'
 
 }
+
+apply plugin: "androidx.navigation.safeargs.kotlin"

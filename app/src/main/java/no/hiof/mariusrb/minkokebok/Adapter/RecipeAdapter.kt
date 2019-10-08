@@ -1,57 +1,54 @@
 package no.hiof.mariusrb.minkokebok.Adapter
 
-import android.content.Context
-import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.BaseAdapter
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import kotlinx.android.synthetic.main.recipe_list.view.*
-import no.hiof.mariusrb.minkokebok.MainActivity
+import kotlinx.android.synthetic.main.recipe_list_item.view.*
 import no.hiof.mariusrb.minkokebok.Model.Recipe
 import no.hiof.mariusrb.minkokebok.R
-import no.hiof.mariusrb.minkokebok.RecipeDetailActivity
 
-class RecipeAdapter: RecyclerView.Adapter<RecipeAdapter.CustomViewHolder>() {
-
-    val recipeTitles = listOf<String>("Pizza", "Lasagne", "Bolognese", "Boller", "Kake", "Smør")
-
-
+class RecipeAdapter(private val items : ArrayList<Recipe>, var clickListener: View.OnClickListener) : RecyclerView.Adapter<RecipeAdapter.RecipeViewHolder>() {
     override fun getItemCount(): Int {
-        //Number of items
-        return recipeTitles.size
+        return items.size
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CustomViewHolder {
-        val layoutInflater = LayoutInflater.from(parent.context)
-        val cellForRow = layoutInflater.inflate(R.layout.recipe_list, parent, false)
+    override fun onCreateViewHolder(parent: ViewGroup,viewType: Int): RecipeAdapter.RecipeViewHolder {
 
-        return CustomViewHolder(cellForRow)
+        val itemView = LayoutInflater.from(parent.context).inflate(R.layout.recipe_list_item, parent, false)
+
+        return RecipeViewHolder(itemView)
     }
 
-    override fun onBindViewHolder(holder: CustomViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: RecipeAdapter.RecipeViewHolder, position: Int) {
+        val currentRecipe = items[position]
 
-        val recipeTitles = recipeTitles.get(position)
-        holder.view.Recipe_title_textView.text = recipeTitles
+        holder.bind(currentRecipe, clickListener)
 
-        holder.recipe = recipeTitles
     }
 
-    class CustomViewHolder(val view: View, var recipe: String? = null) : RecyclerView.ViewHolder(view) {
+    class RecipeViewHolder(view : View) : RecyclerView.ViewHolder(view){
+ //       private val recipePictureImageView : ImageView = view.recipePictureView
+        private val recipeTitleTextView : TextView = view.recipe_title
+     //   private val recipeDescriptionTextView : TextView = view.recipe_description_title
 
-        companion object{
-            val RECIPE_TITLE_KEY = "RECIPE_TITLE"
+        fun bind(item:Recipe, clickListener: View.OnClickListener){
+
+          //  recipePictureImageView.setImageResource()
+            recipeTitleTextView.text = item.title
+        //    recipeDescriptionTextView.text = item.description
+
+            this.itemView.setOnClickListener(clickListener)
         }
-        init {
-            view.setOnClickListener {
-                val intent = Intent(view.context, RecipeDetailActivity::class.java)
-                intent.putExtra(RECIPE_TITLE_KEY, recipe)
-                view.context.startActivity(intent)
-            }
-        }
+
+
+
+
     }
+
+
+
 }
 
 
