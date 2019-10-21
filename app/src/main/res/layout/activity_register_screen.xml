@@ -23,36 +23,21 @@
         app:layout_constraintTop_toBottomOf="@+id/registerPassword" />
 
     <EditText
-        android:id="@+id/registerUsername"
-        android:layout_width="0dp"
-        android:layout_height="50dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="32dp"
-        android:background="@drawable/rounded_edittext_register_login"
-        android:ems="10"
-        android:hint="Username"
-        android:inputType="textPersonName"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.067" />
-
-    <EditText
         android:id="@+id/registerEmail"
         android:layout_width="0dp"
         android:layout_height="50dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="184dp"
+        android:layout_marginEnd="32dp"
         android:background="@drawable/rounded_edittext_register_login"
         android:ems="10"
         android:hint="Email"
         android:inputType="textEmailAddress"
-        app:layout_constraintEnd_toEndOf="@+id/registerUsername"
+        android:padding="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/registerUsername"
-        app:layout_constraintTop_toBottomOf="@+id/registerUsername" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/registerPassword"
@@ -62,6 +47,7 @@
         android:layout_marginBottom="416dp"
         android:background="@drawable/rounded_edittext_register_login"
         android:ems="10"
+        android:padding="10dp"
         android:hint="Password"
         android:inputType="textPassword"
         app:layout_constraintBottom_toBottomOf="parent"
