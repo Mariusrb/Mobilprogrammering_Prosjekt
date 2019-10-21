@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "688081527756",
+    "firebase_url": "https://minkokebok-ba1d2.firebaseio.com",
+    "project_id": "minkokebok-ba1d2",
+    "storage_bucket": "minkokebok-ba1d2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:688081527756:android:343e4e66707ed93b237369",
+        "android_client_info": {
+          "package_name": "no.hiof.mariusrb.minkokebok"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "688081527756-cj4sj0u5l8tbcd02d54m070cth4ck100.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCTHDJKviuccZxnzYd_N2gpW4sjJkr_a0o"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "688081527756-cj4sj0u5l8tbcd02d54m070cth4ck100.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
