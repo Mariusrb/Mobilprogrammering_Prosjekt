@@ -41,6 +41,8 @@ class RegisterScreen : AppCompatActivity() {
             .addOnCompleteListener {
                 if (!it.isSuccessful) return@addOnCompleteListener
                 Log.d("Main", "Sucsesfully created user with uid: ${it.result?.user?.uid} ")
+                val intent = Intent(this, LoginScreen::class.java)
+                startActivity(intent)
             }
             .addOnFailureListener {
                 Log.d("Main", "Failed to create user: ${it.message}")
