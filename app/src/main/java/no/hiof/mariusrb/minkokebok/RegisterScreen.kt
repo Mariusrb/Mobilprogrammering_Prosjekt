@@ -6,6 +6,7 @@ import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.FirebaseDatabase
 import kotlinx.android.synthetic.main.activity_register_screen.*
 
 class RegisterScreen : AppCompatActivity() {
@@ -27,6 +28,7 @@ class RegisterScreen : AppCompatActivity() {
     private fun performRegister(){
         val email = registerEmail.text.toString()
         val password = registerPassword.text.toString()
+        val username = registerUsername.text.toString()
 
         if(email.isEmpty() || password.isEmpty()){
             Toast.makeText(this, "Please enter text in email/pw", Toast.LENGTH_SHORT).show()
@@ -43,6 +45,8 @@ class RegisterScreen : AppCompatActivity() {
                 Log.d("Main", "Sucsesfully created user with uid: ${it.result?.user?.uid} ")
                 val intent = Intent(this, LoginScreen::class.java)
                 startActivity(intent)
+
+                saveUserToFirebaseDatabase()
             }
             .addOnFailureListener {
                 Log.d("Main", "Failed to create user: ${it.message}")
@@ -50,10 +54,21 @@ class RegisterScreen : AppCompatActivity() {
             }
     }
 
+    private fun saveUserToFirebaseDatabase(){
+        val uid = FirebaseAuth.getInstance().uid ?: ""
+        val ref = FirebaseDatabase.getInstance().getReference("/users/$uid")
+        val user = User(uid, registerUsername.text.toString())
 
-
-
+        ref.setValue(user)
+            .addOnSuccessListener {
+                Log.d("RegisterActivity", "Finally saved user to database")
+            }
+            .addOnFailureListener {
+                //Logging
+            }
+    }
 }
+class User(val uid : String, val username : String)
 
 
 
