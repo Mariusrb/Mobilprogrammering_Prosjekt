@@ -37,7 +37,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView"
+        app:layout_constraintTop_toBottomOf="@+id/RegisterImageIcon"
         app:layout_constraintVertical_bias="0.211" />
 
     <EditText
@@ -88,11 +88,11 @@
         app:layout_constraintTop_toBottomOf="@+id/RegisterButton" />
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/RegisterImageIcon"
         android:layout_width="175dp"
         android:layout_height="175dp"
-        android:layout_marginTop="8dp"
-        android:background="@mipmap/ic_launcher"
+        android:layout_marginTop="24dp"
+        android:src="@drawable/min_kokebok_icon"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"

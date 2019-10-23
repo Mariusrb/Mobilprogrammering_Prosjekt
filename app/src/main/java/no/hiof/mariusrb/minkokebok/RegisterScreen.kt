@@ -23,6 +23,7 @@ class RegisterScreen : AppCompatActivity() {
             val intent = Intent(this, LoginScreen::class.java)
             startActivity(intent)
         }
+
     }
 
     private fun performRegister(){
