@@ -6,7 +6,7 @@
     app:startDestination="@id/recipeListFragment">
     <fragment
         android:id="@+id/recipeListFragment"
-        android:name="no.hiof.mariusrb.minkokebok.RecipeListFragment"
+        android:name="no.hiof.mariusrb.minkokebok.Screens.RecipeListFragment"
         android:label="fragment_recipe_list"
         tools:layout="@layout/fragment_recipe_list" >
         <action
@@ -15,7 +15,7 @@
     </fragment>
     <fragment
         android:id="@+id/recipeDetailFragment"
-        android:name="no.hiof.mariusrb.minkokebok.RecipeDetailFragment"
+        android:name="no.hiof.mariusrb.minkokebok.Screens.RecipeDetailFragment"
         android:label="fragment_recipe_detail"
         tools:layout="@layout/fragment_recipe_detail" />
 </navigation>

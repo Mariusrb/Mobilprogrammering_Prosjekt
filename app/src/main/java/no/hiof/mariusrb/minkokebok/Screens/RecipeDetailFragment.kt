@@ -1,4 +1,4 @@
-package no.hiof.mariusrb.minkokebok
+package no.hiof.mariusrb.minkokebok.Screens
 
 
 import android.os.Bundle
@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import kotlinx.android.synthetic.main.fragment_recipe_detail.*
 import no.hiof.mariusrb.minkokebok.Directions_and_Args.RecipeDetailFragmentArgs
 import no.hiof.mariusrb.minkokebok.Model.Recipe
+import no.hiof.mariusrb.minkokebok.R
 
 /**
  * A simple [Fragment] subclass.

@@ -1,4 +1,4 @@
-package no.hiof.mariusrb.minkokebok
+package no.hiof.mariusrb.minkokebok.Login
 
 import android.content.Intent
 import android.os.Bundle
@@ -6,6 +6,8 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_login.*
+import no.hiof.mariusrb.minkokebok.Screens.MainActivity
+import no.hiof.mariusrb.minkokebok.R
 
 class LoginScreen : AppCompatActivity() {
 

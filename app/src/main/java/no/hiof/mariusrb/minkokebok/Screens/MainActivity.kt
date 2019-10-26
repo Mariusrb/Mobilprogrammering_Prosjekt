@@ -1,4 +1,4 @@
-package no.hiof.mariusrb.minkokebok
+package no.hiof.mariusrb.minkokebok.Screens
 
 import android.content.Intent
 import android.os.Bundle
@@ -7,6 +7,8 @@ import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
+import no.hiof.mariusrb.minkokebok.Login.RegisterScreen
+import no.hiof.mariusrb.minkokebok.R
 
 class MainActivity : AppCompatActivity() {
 

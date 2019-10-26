@@ -1,4 +1,4 @@
-package no.hiof.mariusrb.minkokebok
+package no.hiof.mariusrb.minkokebok.Login
 
 import android.content.Intent
 import android.os.Bundle
@@ -8,6 +8,8 @@ import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 import kotlinx.android.synthetic.main.activity_register_screen.*
+import no.hiof.mariusrb.minkokebok.Screens.MainActivity
+import no.hiof.mariusrb.minkokebok.R
 
 class RegisterScreen : AppCompatActivity() {
 
