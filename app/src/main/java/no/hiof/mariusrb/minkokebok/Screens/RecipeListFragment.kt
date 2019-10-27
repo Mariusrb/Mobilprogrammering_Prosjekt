@@ -6,15 +6,12 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import kotlinx.android.synthetic.main.fragment_recipe_list.*
 import no.hiof.mariusrb.minkokebok.Adapter.RecipeAdapter
 import no.hiof.mariusrb.minkokebok.Directions_and_Args.RecipeListFragmentDirections
-import no.hiof.mariusrb.minkokebok.Login.LoginScreen
 import no.hiof.mariusrb.minkokebok.Model.Recipe
 import no.hiof.mariusrb.minkokebok.R
 
@@ -30,7 +27,6 @@ class RecipeListFragment : Fragment(){
     ): View? {
         val view : View = inflater.inflate(R.layout.fragment_recipe_list, container,false)
         return view
-
     }
 
     companion object{
@@ -42,6 +38,7 @@ class RecipeListFragment : Fragment(){
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setUpRecipeRecyclerView()
+        recipeRecyclerView.adapter!!.notifyDataSetChanged()
 
         addRecipeButton.setOnClickListener {
             val intent = Intent(activity, NewRecipe::class.java)
@@ -58,12 +55,11 @@ class RecipeListFragment : Fragment(){
             val action = RecipeListFragmentDirections.actionRecipeListToRecipeDetailFragment(clickedRecipe.uid)
             findNavController().navigate(action)
         })
+
         recipeRecyclerView.layoutManager = GridLayoutManager(context, 1)
     }
 
-    override fun onResume() {
-        super.onResume()
-        setUpRecipeRecyclerView()
-    }
+
+
 }
 

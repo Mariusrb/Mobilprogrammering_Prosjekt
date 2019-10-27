@@ -21,7 +21,7 @@ data class Recipe(var uid: Int, var title: String, var description: String) : Se
                 "Beste bolognesen"
             )
             titles.forEachIndexed { index, title ->
-                val aRecipe = Recipe(index, title, title + "\n" + description.get(index))
+                val aRecipe = Recipe(index, title, description.get(index))
 
                 data.add(aRecipe)
             }

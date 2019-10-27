@@ -5,7 +5,8 @@
     android:id="@+id/constraintLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Screens.RecipeDetailFragment">
+    tools:context=".Screens.RecipeDetailFragment"
+    android:background="@android:color/holo_green_light">
 
     <ImageView
         android:id="@+id/recipePictureView"
@@ -27,6 +28,9 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="Description"
+        android:textStyle="bold"
+        android:textSize="16dp"
+        android:padding="17dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -39,6 +43,8 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="RecipeTitle"
+        android:textStyle="bold"
+        android:textSize="16dp"
         android:textAlignment="center"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/recipePictureView"
@@ -53,6 +59,7 @@
         android:layout_height="60dp"
         android:layout_marginBottom="16dp"
         android:text="Delete"
+        android:background="@drawable/rounded_edittext_register_login"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.95"
@@ -64,6 +71,7 @@
         android:layout_height="60dp"
         android:layout_marginBottom="16dp"
         android:text="Edit"
+        android:background="@drawable/rounded_edittext_register_login"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.049"
