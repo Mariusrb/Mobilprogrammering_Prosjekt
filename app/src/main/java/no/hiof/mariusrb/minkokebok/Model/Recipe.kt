@@ -2,7 +2,7 @@ package no.hiof.mariusrb.minkokebok.Model
 
 import java.io.Serializable
 
-data class Recipe(val uid: Int, var title: String, var description: String) : Serializable {
+data class Recipe(var uid: Int, var title: String, var description: String) : Serializable {
 
     companion object {
         fun getRecipes(): ArrayList<Recipe> {

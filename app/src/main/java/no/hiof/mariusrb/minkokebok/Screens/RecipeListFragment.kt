@@ -60,5 +60,10 @@ class RecipeListFragment : Fragment(){
         })
         recipeRecyclerView.layoutManager = GridLayoutManager(context, 1)
     }
+
+    override fun onResume() {
+        super.onResume()
+        setUpRecipeRecyclerView()
+    }
 }
 
