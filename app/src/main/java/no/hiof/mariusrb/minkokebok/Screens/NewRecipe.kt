@@ -19,11 +19,9 @@ class NewRecipe : AppCompatActivity() {
         newRecipeSaveButton.setOnClickListener {
             val changedTitle = newRecipeTitleText.text.toString()
             val changedDescription = newRecipeDescriptionText.text.toString()
-
             val firebaseuser = FirebaseAuth.getInstance().currentUser
             val uid = firebaseuser?.uid
             val firebasadata = FirebaseDatabase.getInstance().getReference("/users").child(uid.toString())
-
 
             val newRecipe: List<Recipe> = mutableListOf(
                 Recipe("", changedTitle, changedDescription)
@@ -33,7 +31,6 @@ class NewRecipe : AppCompatActivity() {
                 it.uid = key.toString()
                 firebasadata.child("recipe").child(key.toString()).setValue(it)
                 finish()
-
             }
         }
     }

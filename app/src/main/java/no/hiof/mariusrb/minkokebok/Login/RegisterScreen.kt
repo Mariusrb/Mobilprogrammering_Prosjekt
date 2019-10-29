@@ -20,12 +20,10 @@ class RegisterScreen : AppCompatActivity() {
         RegisterButton.setOnClickListener {
             performRegister()
         }
-
         registerAlreadyHaveAccount.setOnClickListener {
             val intent = Intent(this, LoginScreen::class.java)
             startActivity(intent)
         }
-
     }
 
     private fun performRegister(){
