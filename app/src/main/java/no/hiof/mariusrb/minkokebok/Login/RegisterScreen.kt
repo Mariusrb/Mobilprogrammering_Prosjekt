@@ -2,14 +2,14 @@ package no.hiof.mariusrb.minkokebok.Login
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 import kotlinx.android.synthetic.main.activity_register_screen.*
-import no.hiof.mariusrb.minkokebok.Screens.MainActivity
+import no.hiof.mariusrb.minkokebok.Model.User
 import no.hiof.mariusrb.minkokebok.R
+import no.hiof.mariusrb.minkokebok.Screens.MainActivity
 
 class RegisterScreen : AppCompatActivity() {
 
@@ -34,23 +34,16 @@ class RegisterScreen : AppCompatActivity() {
         val username = registerUsername.text.toString()
 
         if(email.isEmpty() || password.isEmpty()){
-            Toast.makeText(this, "Please enter text in email/pw", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "Please enter text in Email and Password", Toast.LENGTH_SHORT).show()
             return
         }
-
-        Log.d("LoginActivity", "Email is: " + email)
-        Log.d("LoginActivity", "Password is: " + password)
-
 
         FirebaseAuth.getInstance().createUserWithEmailAndPassword(email, password)
             .addOnCompleteListener {
                 if (!it.isSuccessful) return@addOnCompleteListener
-                Log.d("Main", "Sucsesfully created user with uid: ${it.result?.user?.uid} ")
-
                 saveUserToFirebaseDatabase()
             }
             .addOnFailureListener {
-                Log.d("Main", "Failed to create user: ${it.message}")
                 Toast.makeText(this, "Failed to create user: ${it.message}", Toast.LENGTH_SHORT).show()
             }
     }
@@ -62,7 +55,6 @@ class RegisterScreen : AppCompatActivity() {
 
         ref.setValue(user)
             .addOnSuccessListener {
-                Log.d("RegisterActivity", "Finally saved user to database")
                 val intent = Intent(this, MainActivity::class.java)
                 intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK.or(Intent.FLAG_ACTIVITY_NEW_TASK)
                 startActivity(intent)
@@ -72,7 +64,9 @@ class RegisterScreen : AppCompatActivity() {
             }
     }
 }
-class User(val uid : String, val username : String)
+
+
+
 
 
 

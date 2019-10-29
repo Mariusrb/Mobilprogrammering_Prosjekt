@@ -6,8 +6,8 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_login.*
-import no.hiof.mariusrb.minkokebok.Screens.MainActivity
 import no.hiof.mariusrb.minkokebok.R
+import no.hiof.mariusrb.minkokebok.Screens.MainActivity
 
 class LoginScreen : AppCompatActivity() {
 
@@ -38,8 +38,6 @@ class LoginScreen : AppCompatActivity() {
                 .addOnFailureListener {
                     Toast.makeText(this, "Error", Toast.LENGTH_SHORT).show()
                 }
-
         }
     }
-
 }

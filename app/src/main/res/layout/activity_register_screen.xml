@@ -12,13 +12,13 @@
         android:id="@+id/RegisterButton"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="Register"
+        android:layout_marginTop="16dp"
         android:background="@drawable/rounded_button"
+        android:text="Register"
         android:textColor="@android:color/white"
         android:textStyle=""
         app:layout_constraintEnd_toEndOf="@+id/registerPassword"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/registerPassword"
         app:layout_constraintTop_toBottomOf="@+id/registerPassword" />
 
@@ -27,29 +27,28 @@
         android:layout_width="0dp"
         android:layout_height="50dp"
         android:layout_marginStart="32dp"
+        android:layout_marginTop="32dp"
         android:layout_marginEnd="32dp"
         android:background="@drawable/rounded_edittext_register_login"
         android:ems="10"
         android:hint="Username"
         android:inputType="textPersonName"
         android:padding="10dp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/RegisterImageIcon"
-        app:layout_constraintVertical_bias="0.211" />
+        app:layout_constraintTop_toBottomOf="@+id/imageView2" />
 
     <EditText
         android:id="@+id/registerEmail"
         android:layout_width="0dp"
         android:layout_height="50dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="12dp"
         android:background="@drawable/rounded_edittext_register_login"
         android:ems="10"
-        android:padding="10dp"
         android:hint="Email"
         android:inputType="textEmailAddress"
+        android:padding="10dp"
         app:layout_constraintEnd_toEndOf="@+id/registerUsername"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/registerUsername"
@@ -59,13 +58,13 @@
         android:id="@+id/registerPassword"
         android:layout_width="0dp"
         android:layout_height="50dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="12dp"
         android:layout_marginBottom="416dp"
         android:background="@drawable/rounded_edittext_register_login"
         android:ems="10"
-        android:padding="10dp"
         android:hint="Password"
         android:inputType="textPassword"
+        android:padding="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/registerEmail"
         app:layout_constraintHorizontal_bias="0.0"
@@ -88,15 +87,13 @@
         app:layout_constraintTop_toBottomOf="@+id/RegisterButton" />
 
     <ImageView
-        android:id="@+id/RegisterImageIcon"
+        android:id="@+id/imageView2"
         android:layout_width="175dp"
         android:layout_height="175dp"
         android:layout_marginTop="24dp"
-        android:src="@drawable/min_kokebok_icon"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/registerUsername"
+        app:layout_constraintStart_toStartOf="@+id/registerUsername"
         app:layout_constraintTop_toTopOf="parent"
-        tools:srcCompat="@tools:sample/avatars[3]" />
+        app:srcCompat="@drawable/my_recipe_book_icon" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

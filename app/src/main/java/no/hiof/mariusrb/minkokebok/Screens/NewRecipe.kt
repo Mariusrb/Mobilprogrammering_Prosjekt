@@ -15,8 +15,6 @@ class NewRecipe : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_new_recipe)
         supportActionBar?.title = "New Recipe"
-        val title = newRecipeTitleText.text.toString()
-        val description = newRecipeDescriptionText.text.toString()
 
         newRecipeSaveButton.setOnClickListener {
             val changedTitle = newRecipeTitleText.text.toString()
