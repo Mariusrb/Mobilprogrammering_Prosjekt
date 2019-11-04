@@ -24,31 +24,36 @@ class NewRecipe : AppCompatActivity() {
         setContentView(R.layout.activity_new_recipe)
         supportActionBar?.title = "New Recipe"
 
-        newRecipeSaveButton.setOnClickListener {
-            val changedTitle = newRecipeTitleText.text.toString()
-            val changedDescription = newRecipeDescriptionText.text.toString()
-            val firebaseuser = FirebaseAuth.getInstance().currentUser
-            val uid = firebaseuser?.uid
-            val firebasadata = FirebaseDatabase.getInstance().getReference("/users").child(uid.toString())
-
-            val newRecipe: List<Recipe> = mutableListOf(
-                Recipe("", changedTitle, changedDescription, "")
-            )
-            newRecipe.forEach {
-                val key = firebasadata.child("recipe").push().key
-                it.uid = key.toString()
-                firebasadata.child("recipe").child(key.toString()).setValue(it)
-                finish()
-            }
-            uploadImageToFirebaseStorage()
-        }
         selectphoto_button.setOnClickListener {
             Log.d("TEST", "Supertest")
             val intent = Intent(Intent.ACTION_PICK)
             intent.type = "image/*"
             startActivityForResult(intent, 0)
+
         }
-    }
+
+        newRecipeSaveButton.setOnClickListener {
+
+            val changedTitle = newRecipeTitleText.text.toString()
+            val changedDescription = newRecipeDescriptionText.text.toString()
+            val changedImage = selectedPhotoUri.toString()
+            val firebaseuser = FirebaseAuth.getInstance().currentUser
+            val uid = firebaseuser?.uid
+            val firebasadata =
+                FirebaseDatabase.getInstance().getReference("/users").child(uid.toString())
+
+            val newRecipe: List<Recipe> = mutableListOf(
+                    Recipe("", changedTitle, changedDescription, changedImage)
+                )
+                newRecipe.forEach {
+                    val key = firebasadata.child("recipe").push().key
+                    it.uid = key.toString()
+                    firebasadata.child("recipe").child(key.toString()).setValue(it)
+                    finish()
+                }
+
+            }
+        }
 
     var selectedPhotoUri: Uri? = null
 
@@ -62,17 +67,24 @@ class NewRecipe : AppCompatActivity() {
             val bitmap = MediaStore.Images.Media.getBitmap(contentResolver, selectedPhotoUri)
             val bitmapdrawable = BitmapDrawable(bitmap)
             selectphoto_button.setBackgroundDrawable(bitmapdrawable)
+            uploadImageToFirebaseStorage()
         }
     }
 
     private fun uploadImageToFirebaseStorage(){
         if(selectedPhotoUri == null) return
 
+
         val filename = UUID.randomUUID().toString()
         val ref = FirebaseStorage.getInstance().getReference("/images/$filename")
         ref.putFile(selectedPhotoUri!!)
             .addOnSuccessListener {
-                Log.d("Photo", "Successfullyt uploaded image: ${it.metadata?.path}")
+                Log.d("Photo", "Successfully uploaded image: ${it.metadata?.path}")
+
+                ref.downloadUrl.addOnSuccessListener {
+                    Log.d("Photo", "File Location: $it")
+
+                }
             }
     }
 }

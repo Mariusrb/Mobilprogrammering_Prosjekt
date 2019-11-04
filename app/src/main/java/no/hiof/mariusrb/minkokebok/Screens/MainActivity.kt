@@ -62,6 +62,7 @@ class MainActivity : AppCompatActivity() {
                     intent.putExtra("EXTRA_RECIPE_TITLE", item.recipe.title)
                     intent.putExtra("EXTRA_RECIPE_DESCRIPTION", item.recipe.description)
                     intent.putExtra("EXTRA_RECIPE_UID", item.recipe.uid)
+                    intent.putExtra("EXTRA_RECIPE_PICTURE", item.recipe.recipephoto)
                     startActivity(intent)
                 }
                 recyclerview_recipes.adapter = adapter

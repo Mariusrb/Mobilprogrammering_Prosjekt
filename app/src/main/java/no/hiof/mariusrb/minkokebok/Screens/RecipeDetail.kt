@@ -1,6 +1,7 @@
 package no.hiof.mariusrb.minkokebok.Screens
 
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
@@ -19,7 +20,7 @@ class RecipeDetail : AppCompatActivity() {
         val recipetitle = intent.getStringExtra("EXTRA_RECIPE_TITLE")
         val recipedescription = intent.getStringExtra("EXTRA_RECIPE_DESCRIPTION")
         val recipeuid = intent.getStringExtra("EXTRA_RECIPE_UID")
-
+        val recipepicture = intent.getStringExtra("EXTRA_RECIPE_PICTURE")
         onCreated()
 
         editRecipeButton.setOnClickListener {
@@ -27,6 +28,7 @@ class RecipeDetail : AppCompatActivity() {
             intent.putExtra("EXTRA_RECIPE_TITLE", recipetitle)
             intent.putExtra("EXTRA_RECIPE_DESCRIPTION", recipedescription)
             intent.putExtra("EXTRA_RECIPE_UID", recipeuid)
+            intent.putExtra("EXTRA_RECIPE_PICTURE", recipepicture)
             startActivity(intent)
         }
             deleteRecipeButton.setOnClickListener {
@@ -48,6 +50,11 @@ class RecipeDetail : AppCompatActivity() {
     private fun onCreated(){
             recipeDetailTitle.setText(intent.getStringExtra("EXTRA_RECIPE_TITLE"))
             recipeDetailDescription.setText(intent.getStringExtra("EXTRA_RECIPE_DESCRIPTION"))
+            val picture = intent.getStringExtra("EXTRA_RECIPE_PICTURE")
+            val realpicture = Uri.parse(intent.getStringExtra("EXTRA_RECIPE_PICTURE"))
+
+        //TODO:("Make the picture work propperly without crashing the app. The line below crashes the app.")
+        //    recipeListImageView.setImageURI(realpicture)
             supportActionBar?.title = intent.getStringExtra("EXTRA_RECIPE_TITLE")
     }
 }
