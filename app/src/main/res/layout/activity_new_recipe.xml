@@ -10,17 +10,17 @@
         android:id="@+id/newRecipeTitleText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Title"
+        android:layout_marginTop="16dp"
+        android:autofillHints="Title"
         android:inputType="text"
-        android:textStyle="bold"
+        android:text="Title"
         android:textSize="16dp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.075"
-        android:autofillHints="Title" />
+        app:layout_constraintTop_toBottomOf="@+id/selectphoto_button"
+        app:layout_constraintVertical_bias="0.0" />
 
     <EditText
         android:id="@+id/newRecipeDescriptionText"
@@ -29,15 +29,15 @@
         android:ems="10"
         android:gravity="start|top"
         android:hint="Description"
-        android:textStyle="bold"
-        android:textSize="16dp"
         android:inputType="textMultiLine"
+        android:textSize="16dp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.136"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/newRecipeTitleText"
-        app:layout_constraintVertical_bias="0.04" />
+        app:layout_constraintVertical_bias="0.038" />
 
     <Button
         android:id="@+id/newRecipeSaveButton"
@@ -54,5 +54,17 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.954" />
+
+    <Button
+        android:id="@+id/selectphoto_button"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_marginTop="32dp"
+        android:background="@drawable/rounded_image_button"
+        android:text="Select Photo"
+        android:textColor="@android:color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

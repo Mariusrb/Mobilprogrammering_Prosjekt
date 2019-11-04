@@ -25,7 +25,7 @@ class EditRecipe : AppCompatActivity() {
             val currentUser = FirebaseAuth.getInstance().currentUser
             val userkey = currentUser?.uid
             val ref = FirebaseDatabase.getInstance().getReference("/users").child(userkey!!).child("/recipe").child(uid)
-            val completeEditedRecipe = Recipe(uid,completedTitle, completedDescription )
+            val completeEditedRecipe = Recipe(uid,completedTitle, completedDescription, "" )
 
             ref.setValue(completeEditedRecipe)
 

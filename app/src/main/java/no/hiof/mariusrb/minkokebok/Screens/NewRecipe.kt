@@ -1,12 +1,20 @@
 package no.hiof.mariusrb.minkokebok.Screens
 
+import android.app.Activity
+import android.content.Intent
+import android.graphics.drawable.BitmapDrawable
+import android.net.Uri
 import android.os.Bundle
+import android.provider.MediaStore
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.storage.FirebaseStorage
 import kotlinx.android.synthetic.main.activity_new_recipe.*
 import no.hiof.mariusrb.minkokebok.Model.Recipe
 import no.hiof.mariusrb.minkokebok.R
+import java.util.*
 
 class NewRecipe : AppCompatActivity() {
 
@@ -24,7 +32,7 @@ class NewRecipe : AppCompatActivity() {
             val firebasadata = FirebaseDatabase.getInstance().getReference("/users").child(uid.toString())
 
             val newRecipe: List<Recipe> = mutableListOf(
-                Recipe("", changedTitle, changedDescription)
+                Recipe("", changedTitle, changedDescription, "")
             )
             newRecipe.forEach {
                 val key = firebasadata.child("recipe").push().key
@@ -32,9 +40,43 @@ class NewRecipe : AppCompatActivity() {
                 firebasadata.child("recipe").child(key.toString()).setValue(it)
                 finish()
             }
+            uploadImageToFirebaseStorage()
+        }
+        selectphoto_button.setOnClickListener {
+            Log.d("TEST", "Supertest")
+            val intent = Intent(Intent.ACTION_PICK)
+            intent.type = "image/*"
+            startActivityForResult(intent, 0)
         }
     }
+
+    var selectedPhotoUri: Uri? = null
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        if(requestCode == 0 && resultCode == Activity.RESULT_OK && data != null){
+            Log.d("NewRecipe", "Photo was selected")
+
+            selectedPhotoUri = data.data
+            val bitmap = MediaStore.Images.Media.getBitmap(contentResolver, selectedPhotoUri)
+            val bitmapdrawable = BitmapDrawable(bitmap)
+            selectphoto_button.setBackgroundDrawable(bitmapdrawable)
+        }
+    }
+
+    private fun uploadImageToFirebaseStorage(){
+        if(selectedPhotoUri == null) return
+
+        val filename = UUID.randomUUID().toString()
+        val ref = FirebaseStorage.getInstance().getReference("/images/$filename")
+        ref.putFile(selectedPhotoUri!!)
+            .addOnSuccessListener {
+                Log.d("Photo", "Successfullyt uploaded image: ${it.metadata?.path}")
+            }
+    }
 }
+
 
 
 
