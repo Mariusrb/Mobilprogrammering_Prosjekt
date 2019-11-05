@@ -36,7 +36,7 @@ class NewRecipe : AppCompatActivity() {
 
             val changedTitle = newRecipeTitleText.text.toString()
             val changedDescription = newRecipeDescriptionText.text.toString()
-            val changedImage = selectedPhotoUri.toString()
+            val changedImage = selectedPhotoPath
             val firebaseuser = FirebaseAuth.getInstance().currentUser
             val uid = firebaseuser?.uid
             val firebasadata =
@@ -49,6 +49,7 @@ class NewRecipe : AppCompatActivity() {
                     val key = firebasadata.child("recipe").push().key
                     it.uid = key.toString()
                     firebasadata.child("recipe").child(key.toString()).setValue(it)
+                    Log.d("TEST", changedImage)
                     finish()
                 }
 
@@ -56,6 +57,7 @@ class NewRecipe : AppCompatActivity() {
         }
 
     var selectedPhotoUri: Uri? = null
+    var selectedPhotoPath:String = ""
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
@@ -83,6 +85,7 @@ class NewRecipe : AppCompatActivity() {
 
                 ref.downloadUrl.addOnSuccessListener {
                     Log.d("Photo", "File Location: $it")
+                    selectedPhotoPath = it.toString()
 
                 }
             }
