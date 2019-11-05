@@ -9,6 +9,7 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
+import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_recipe_detail.*
 import no.hiof.mariusrb.minkokebok.Model.Recipe
 import no.hiof.mariusrb.minkokebok.R
@@ -31,7 +32,7 @@ class RecipeDetail : AppCompatActivity() {
                 val database = p0.getValue(Recipe::class.java)
                 recipeDetailTitle.text = database!!.title
                 val picture = Uri.parse(database.recipephoto)
-                recipeDetailImage.setImageURI(picture)
+                Picasso.get().load(picture).into(recipeDetailImage)
                 recipeDetailDescription.text = database.description
 
             }
