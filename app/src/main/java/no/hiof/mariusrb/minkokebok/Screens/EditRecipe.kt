@@ -30,6 +30,7 @@ class EditRecipe : AppCompatActivity() {
         val userkey = currentUser?.uid
         val ref = FirebaseDatabase.getInstance().getReference("/users").child(userkey!!).child("/recipe").child(uid)
 
+
         ref.addListenerForSingleValueEvent(object: ValueEventListener {
             override fun onDataChange(p0: DataSnapshot) {
                 val database = p0.getValue(Recipe::class.java)
@@ -37,6 +38,7 @@ class EditRecipe : AppCompatActivity() {
                 editedRecipeDescription.setText(database.description)
                 val picture = Uri.parse(database.recipephoto)
                 Picasso.get().load(picture).into(editedRecipePicture)
+                oldPicture = database.recipephoto
             }
             override fun onCancelled(p0: DatabaseError) {
                 TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
@@ -49,12 +51,20 @@ class EditRecipe : AppCompatActivity() {
             startActivityForResult(intent, 0)
         }
 
-
-
         editedRecipeTextSaveButton.setOnClickListener {
             val completedTitle = editedRecipeTitle.text.toString()
             val completedDescription = editedRecipeDescription.text.toString()
             val completedPicture = selectedPhotoPath
+
+            val ref2 = FirebaseStorage.getInstance().getReference("/images").child(oldPicture)
+            ref2.delete()
+                .addOnCompleteListener {
+                    Log.d("Photo", "Image deleted: $oldPicture")
+                }
+                .addOnFailureListener {
+                    Log.d("Photo", "Image not deleted: $oldPicture")
+                }
+
             val completeEditedRecipe = Recipe(uid,completedTitle, completedDescription, completedPicture )
 
             ref.setValue(completeEditedRecipe)
@@ -64,7 +74,7 @@ class EditRecipe : AppCompatActivity() {
             finish()
         }
     }
-
+    var oldPicture: String = ""
     var selectedPhotoUri: Uri? = null
     var selectedPhotoPath:String = ""
 

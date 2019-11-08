@@ -49,12 +49,13 @@ class MainActivity : AppCompatActivity() {
         val currentUser = FirebaseAuth.getInstance().currentUser
         val userkey = currentUser?.uid
         val ref = FirebaseDatabase.getInstance().getReference("/users").child(userkey!!).child("/recipe")
-        ref.addListenerForSingleValueEvent(object: ValueEventListener {
+        ref.addValueEventListener(object: ValueEventListener {
             override fun onDataChange(p0: DataSnapshot) {
                 val adapter = GroupAdapter<ViewHolder>()
                 p0.children.forEach {
                     val recipe = it.getValue(Recipe::class.java)
                     adapter.add(UserItem(recipe!!))
+                    adapter.notifyDataSetChanged()
                 }
                 adapter.setOnItemClickListener { item, view ->
                     val userItem = item as UserItem
