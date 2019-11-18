@@ -18,7 +18,7 @@ import no.hiof.mariusrb.minkokebok.Model.Recipe
 import no.hiof.mariusrb.minkokebok.Model.UserItem
 import no.hiof.mariusrb.minkokebok.R
 
-class MainActivity : AppCompatActivity() {
+class MainPage : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -79,6 +79,13 @@ class MainActivity : AppCompatActivity() {
                 val intent = Intent(this, RegisterScreen::class.java)
                 intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK.or(Intent.FLAG_ACTIVITY_NEW_TASK)
                 startActivity(intent)
+            }
+            R.id.Google_search -> {
+                val intent = Intent(this, GoogleSearch::class.java)
+                startActivity(intent)
+            }
+            R.id.internal_search -> {
+                //TODO: Internal search
             }
         }
         return super.onOptionsItemSelected(item)

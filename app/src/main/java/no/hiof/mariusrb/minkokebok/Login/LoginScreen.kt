@@ -6,14 +6,18 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_login.*
-import no.hiof.mariusrb.minkokebok.R
-import no.hiof.mariusrb.minkokebok.Screens.MainActivity
+import no.hiof.mariusrb.minkokebok.Screens.MainPage
+
+
+
+
+
 
 class LoginScreen : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_login)
+        setContentView(no.hiof.mariusrb.minkokebok.R.layout.activity_login)
         loginButton.setOnClickListener {
           performLogin()
         }
@@ -21,6 +25,7 @@ class LoginScreen : AppCompatActivity() {
             finish()
         }
     }
+
     private fun performLogin() {
         val email = loginEmail.text.toString()
         val password = loginPassword.text.toString()
@@ -31,7 +36,7 @@ class LoginScreen : AppCompatActivity() {
             FirebaseAuth.getInstance().signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener {
                     if (!it.isSuccessful) return@addOnCompleteListener
-                    val intent = Intent(this, MainActivity::class.java)
+                    val intent = Intent(this, MainPage::class.java)
                     startActivity(intent)
                         Toast.makeText(this, "Logged in successfully", Toast.LENGTH_SHORT).show()
                 }

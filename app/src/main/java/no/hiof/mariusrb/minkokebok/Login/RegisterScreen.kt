@@ -9,7 +9,7 @@ import com.google.firebase.database.FirebaseDatabase
 import kotlinx.android.synthetic.main.activity_register_screen.*
 import no.hiof.mariusrb.minkokebok.Model.User
 import no.hiof.mariusrb.minkokebok.R
-import no.hiof.mariusrb.minkokebok.Screens.MainActivity
+import no.hiof.mariusrb.minkokebok.Screens.MainPage
 
 class RegisterScreen : AppCompatActivity() {
 
@@ -53,7 +53,7 @@ class RegisterScreen : AppCompatActivity() {
 
         ref.setValue(user)
             .addOnSuccessListener {
-                val intent = Intent(this, MainActivity::class.java)
+                val intent = Intent(this, MainPage::class.java)
                 intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK.or(Intent.FLAG_ACTIVITY_NEW_TASK)
                 startActivity(intent)
             }

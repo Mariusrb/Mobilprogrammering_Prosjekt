@@ -2,11 +2,20 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+
+    <item
+        android:id="@+id/Google_search"
+        android:title="Google Search">
+    </item>
+
+    <item
+        android:id="@+id/internal_search"
+        android:title="Search for recipe">
+    </item>
+
     <item
         android:id="@+id/menu_sign_out"
-        android:title="Sign Out"
-        app:showAsAction="ifRoom">
-
+        android:title="Sign Out">
     </item>
 
 

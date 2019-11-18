@@ -65,11 +65,18 @@ class EditRecipe : AppCompatActivity() {
                     Log.d("Photo", "Image not deleted: $oldPicture")
                 }
 
-            val completeEditedRecipe = Recipe(uid,completedTitle, completedDescription, completedPicture )
+            if(selectedPhotoPath == "") {
+                val completeEditedRecipe =
+                    Recipe(uid, completedTitle, completedDescription, oldPicture )
+                ref.setValue(completeEditedRecipe)
+            }
+            else{
+                val completeEditedRecipe =
+                Recipe(uid, completedTitle, completedDescription, completedPicture )
+                ref.setValue(completeEditedRecipe)
+            }
 
-            ref.setValue(completeEditedRecipe)
-
-            val backintent = Intent(this, MainActivity::class.java)
+            val backintent = Intent(this, MainPage::class.java)
             startActivity(backintent)
             finish()
         }

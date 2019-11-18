@@ -3,6 +3,7 @@
     package="no.hiof.mariusrb.minkokebok">
     <!-- To access Google+ APIs: -->
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.CAMERA" />
 
     <application
         android:allowBackup="true"
@@ -11,34 +12,30 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
+        <activity android:name=".Screens.GoogleSearch"></activity>
         <activity android:name=".Screens.RecipeDetail">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".Screens.MainActivity" />
+                android:value=".Screens.MainPage" />
         </activity>
-
-        <activity android:name=".Screens.EditRecipe"/>
-
+        <activity android:name=".Screens.EditRecipe" />
         <activity android:name=".Screens.NewRecipe">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".Screens.MainActivity" />
+                android:value=".Screens.MainPage" />
         </activity>
-
-        <activity android:name=".Screens.MainActivity">
+        <activity android:name=".Screens.MainPage">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
             </intent-filter>
         </activity>
-
         <activity android:name=".Login.RegisterScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity android:name=".Login.LoginScreen" />
     </application>
 
