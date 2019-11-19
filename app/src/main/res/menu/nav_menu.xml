@@ -9,14 +9,10 @@
     </item>
 
     <item
-        android:id="@+id/internal_search"
-        android:title="Search for recipe">
-    </item>
-
-    <item
         android:id="@+id/menu_sign_out"
         android:title="Sign Out">
     </item>
+
 
 
 </menu>

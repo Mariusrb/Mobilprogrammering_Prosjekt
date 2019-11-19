@@ -2,6 +2,8 @@ package no.hiof.mariusrb.minkokebok.Screens
 
 import android.content.Intent
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
@@ -27,7 +29,35 @@ class MainPage : AppCompatActivity() {
         addnewRecipeButton()
         verifyUserIsLoggedIn()
         fetchRecipes()
+        Search()
     }
+
+    private fun Search(){
+        val search = editSearchText
+        search.addTextChangedListener(object: TextWatcher {
+            override fun beforeTextChanged(s:CharSequence, start:Int, count:Int, after:Int) {
+            }
+            override fun onTextChanged(s:CharSequence, start:Int, before:Int, count:Int) {
+            }
+            override fun afterTextChanged(s: Editable) {
+                filter(s.toString())
+            }
+        })
+    }
+
+    private fun filter(text:String) {
+        val filteredList = ArrayList<Recipe>()
+        val adapter = GroupAdapter<ViewHolder>()
+        for (item in filteredList)
+        {
+            if (item.title.toLowerCase().contains(text.toLowerCase()))
+            {
+                filteredList.add(item)
+            }
+        }
+       //TODO:Make the adapter update with the new list
+    }
+
 
     private fun addnewRecipeButton(){
         addNewRecipeButton.setOnClickListener {
@@ -84,9 +114,6 @@ class MainPage : AppCompatActivity() {
                 val intent = Intent(this, GoogleSearch::class.java)
                 startActivity(intent)
             }
-            R.id.internal_search -> {
-                //TODO: Internal search
-            }
         }
         return super.onOptionsItemSelected(item)
     }
@@ -101,3 +128,4 @@ class MainPage : AppCompatActivity() {
         fetchRecipes()
     }
 }
+

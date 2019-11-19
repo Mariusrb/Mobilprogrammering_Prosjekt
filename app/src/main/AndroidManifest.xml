@@ -24,7 +24,8 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".Screens.MainPage" />
         </activity>
-        <activity android:name=".Screens.MainPage">
+        <activity android:name=".Screens.MainPage"
+            android:windowSoftInputMode="stateAlwaysHidden">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
             </intent-filter>
