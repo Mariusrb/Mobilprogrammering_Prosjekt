@@ -38,6 +38,10 @@
             </intent-filter>
         </activity>
         <activity android:name=".Login.LoginScreen" />
+
+        <provider android:authorities="com.facebook.app.FacebookContentProvider{APP_ID}"
+            android:name="com.facebook.FacebookContentProvider"
+            android:exported="true"/>
     </application>
 
 </manifest>

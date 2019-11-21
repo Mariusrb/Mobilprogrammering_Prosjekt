@@ -16,15 +16,18 @@ import no.hiof.mariusrb.minkokebok.R
 
 class RecipeDetail : AppCompatActivity() {
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_recipe_detail)
         val recipetitle = intent.getStringExtra("EXTRA_RECIPE_TITLE")
         val recipeuid = intent.getStringExtra("EXTRA_RECIPE_UID")
+        var share = ""
         supportActionBar?.title = recipetitle
         val currentUser = FirebaseAuth.getInstance().currentUser
         val userkey = currentUser?.uid
         val ref = FirebaseDatabase.getInstance().getReference("/users").child(userkey!!).child("/recipe").child(recipeuid)
+
 
 
         ref.addListenerForSingleValueEvent(object: ValueEventListener{
@@ -34,6 +37,7 @@ class RecipeDetail : AppCompatActivity() {
                 val picture = Uri.parse(database.recipephoto)
                 Picasso.get().load(picture).into(recipeDetailImage)
                 recipeDetailDescription.text = database.description
+                share = database.title + "\n \n" + database.description
 
             }
 
@@ -42,7 +46,14 @@ class RecipeDetail : AppCompatActivity() {
                 }
             })
 
+        shareRecipeButton.setOnClickListener {
+            val sendintent = Intent()
+            sendintent.action = Intent.ACTION_SEND
+            sendintent.putExtra(Intent.EXTRA_TEXT, share)
+            sendintent.type = "text/plain"
 
+            startActivity(Intent.createChooser(sendintent, "Share to: "))
+        }
 
         editRecipeButton.setOnClickListener {
             val intent = Intent(this, EditRecipe::class.java)
