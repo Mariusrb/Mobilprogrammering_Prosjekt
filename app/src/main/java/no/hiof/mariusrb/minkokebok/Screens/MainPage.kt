@@ -135,8 +135,8 @@ class MainPage : AppCompatActivity() {
 
     //Because Firebase does most of the job for me, here is the code for checking internet connectivity
     private fun network() {
-        val cm = baseContext.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
-        val networkInfo = cm.activeNetworkInfo
+        val connectivityManager = baseContext.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        val networkInfo = connectivityManager.activeNetworkInfo
 
         if (networkInfo != null && networkInfo.isConnected) {
             if (networkInfo.type == ConnectivityManager.TYPE_WIFI) {
