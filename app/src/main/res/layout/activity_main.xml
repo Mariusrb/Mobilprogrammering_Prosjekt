@@ -34,7 +34,7 @@
         android:id="@+id/addNewRecipeButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@drawable/rounded_button"
+        android:background="@drawable/add_new_recipe_button"
         android:onClick="addNewRecipe"
         android:padding="10dp"
         android:layout_gravity="bottom|right"

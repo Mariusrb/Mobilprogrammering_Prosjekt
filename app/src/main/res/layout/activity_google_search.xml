@@ -32,7 +32,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
         android:layout_marginBottom="50dp"
-        android:background="@drawable/rounded_image_button"
+        android:background="@drawable/add_new_recipe_button"
         android:onClick="googleSearch"
         android:text="Search"
         app:layout_constraintBottom_toBottomOf="parent"
