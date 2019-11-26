@@ -30,7 +30,6 @@ class EditRecipe : AppCompatActivity() {
         val userkey = currentUser?.uid
         val ref = FirebaseDatabase.getInstance().getReference("/users").child(userkey!!).child("/recipe").child(uid)
 
-
         ref.addListenerForSingleValueEvent(object: ValueEventListener {
             override fun onDataChange(p0: DataSnapshot) {
                 val database = p0.getValue(Recipe::class.java)
@@ -55,7 +54,6 @@ class EditRecipe : AppCompatActivity() {
             val completedTitle = editedRecipeTitle.text.toString()
             val completedDescription = editedRecipeDescription.text.toString()
             val completedPicture = selectedPhotoPath
-
             val ref2 = FirebaseStorage.getInstance().getReference("/images").child(oldPicture)
             ref2.delete()
                 .addOnCompleteListener {
@@ -81,6 +79,7 @@ class EditRecipe : AppCompatActivity() {
             finish()
         }
     }
+
     var oldPicture: String = ""
     var selectedPhotoUri: Uri? = null
     var selectedPhotoPath:String = ""
@@ -100,7 +99,6 @@ class EditRecipe : AppCompatActivity() {
     }
 
     private fun uploadImageToFirebaseStorage(){
-        //TODO"Find a way to delete old image"
         if(selectedPhotoUri == null) return
         val filename = UUID.randomUUID().toString()
         val ref = FirebaseStorage.getInstance().getReference("/images/$filename")

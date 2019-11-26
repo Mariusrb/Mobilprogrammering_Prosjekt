@@ -18,6 +18,5 @@ class UserItem(val recipe: Recipe) : Item<ViewHolder>() {
         val uri = Uri.parse(recipe.recipephoto)
         val targetImageView = viewHolder.itemView.recipeListImageView
         Picasso.get().load(uri).into(targetImageView)
-
     }
 }

@@ -1,11 +1,14 @@
 package no.hiof.mariusrb.minkokebok.Screens
 
+import android.content.Context
 import android.content.Intent
+import android.net.ConnectivityManager
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
@@ -30,6 +33,7 @@ class MainPage : AppCompatActivity() {
         verifyUserIsLoggedIn()
         fetchRecipes()
         Search()
+        network()
     }
 
     private fun Search(){
@@ -55,9 +59,10 @@ class MainPage : AppCompatActivity() {
                 filteredList.add(item)
             }
         }
-       //TODO:Make the adapter update with the new list
+        //Due to ValueEventListener from fetchRecipes I did not get this to work but the idea is:
+        //Filter the recyclerview to find titles containing same letters as searchbar, add them to a list
+        // Change the recycler view to show the new filtered list instead of the live one from Firebase.
     }
-
 
     private fun addnewRecipeButton(){
         addNewRecipeButton.setOnClickListener {
@@ -126,6 +131,26 @@ class MainPage : AppCompatActivity() {
     override fun onResume() {
         super.onResume()
         fetchRecipes()
+    }
+
+    //Because Firebase does most of the job for me, here is the code for checking internet connectivity
+    private fun network() {
+        val cm = baseContext.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        val networkInfo = cm.activeNetworkInfo
+
+        if (networkInfo != null && networkInfo.isConnected) {
+            if (networkInfo.type == ConnectivityManager.TYPE_WIFI) {
+                Toast.makeText(baseContext, "You are connected to Wifi!", Toast.LENGTH_SHORT).show()
+            }
+            if (networkInfo.type == ConnectivityManager.TYPE_MOBILE) {
+                Toast.makeText(baseContext, "You are connected to Mobile!", Toast.LENGTH_SHORT)
+                    .show()
+            }
+        }
+        else{
+            Toast.makeText(baseContext, "No internet connection", Toast.LENGTH_SHORT).show()
+            this.finish()
+        }
     }
 }
 

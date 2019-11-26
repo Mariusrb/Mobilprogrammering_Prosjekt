@@ -16,7 +16,6 @@ import no.hiof.mariusrb.minkokebok.R
 
 class RecipeDetail : AppCompatActivity() {
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_recipe_detail)
@@ -28,8 +27,6 @@ class RecipeDetail : AppCompatActivity() {
         val userkey = currentUser?.uid
         val ref = FirebaseDatabase.getInstance().getReference("/users").child(userkey!!).child("/recipe").child(recipeuid)
 
-
-
         ref.addListenerForSingleValueEvent(object: ValueEventListener{
             override fun onDataChange(p0: DataSnapshot) {
                 val database = p0.getValue(Recipe::class.java)
@@ -38,7 +35,6 @@ class RecipeDetail : AppCompatActivity() {
                 Picasso.get().load(picture).into(recipeDetailImage)
                 recipeDetailDescription.text = database.description
                 share = database.title + "\n \n" + database.description
-
             }
 
             override fun onCancelled(p0: DatabaseError) {
@@ -51,20 +47,16 @@ class RecipeDetail : AppCompatActivity() {
             sendintent.action = Intent.ACTION_SEND
             sendintent.putExtra(Intent.EXTRA_TEXT, share)
             sendintent.type = "text/plain"
-
             startActivity(Intent.createChooser(sendintent, "Share to: "))
         }
 
         editRecipeButton.setOnClickListener {
             val intent = Intent(this, EditRecipe::class.java)
-       //     intent.putExtra("EXTRA_RECIPE_TITLE", recipetitle)
-       //     intent.putExtra("EXTRA_RECIPE_DESCRIPTION", recipedescription)
             intent.putExtra("EXTRA_RECIPE_UID", recipeuid)
-       //     intent.putExtra("EXTRA_RECIPE_PICTURE", recipepicture)
             startActivity(intent)
         }
-            deleteRecipeButton.setOnClickListener {
 
+            deleteRecipeButton.setOnClickListener {
                 ref.addListenerForSingleValueEvent(object : ValueEventListener {
                     override fun onDataChange(p0: DataSnapshot) {
                         p0.ref.removeValue()
