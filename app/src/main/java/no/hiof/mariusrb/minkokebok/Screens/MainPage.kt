@@ -30,10 +30,10 @@ class MainPage : AppCompatActivity() {
         addnewRecipeButton()
         verifyUserIsLoggedIn()
         fetchRecipes()
-        Search()
+        search()
     }
 
-    private fun Search(){
+    private fun search(){
         val search = editSearchText
         search.addTextChangedListener(object: TextWatcher {
             override fun beforeTextChanged(s:CharSequence, start:Int, count:Int, after:Int) {
@@ -48,7 +48,6 @@ class MainPage : AppCompatActivity() {
 
     private fun filter(text:String) {
         val filteredList = ArrayList<Recipe>()
-        val adapter = GroupAdapter<ViewHolder>()
         for (item in filteredList)
         {
             if (item.title.toLowerCase().contains(text.toLowerCase()))
