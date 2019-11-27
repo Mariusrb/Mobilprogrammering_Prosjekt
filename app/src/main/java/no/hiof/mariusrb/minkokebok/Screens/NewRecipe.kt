@@ -3,9 +3,11 @@ package no.hiof.mariusrb.minkokebok.Screens
 import android.Manifest
 import android.app.Activity
 import android.app.AlertDialog
+import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.drawable.BitmapDrawable
+import android.net.ConnectivityManager
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
@@ -45,18 +47,40 @@ class NewRecipe : AppCompatActivity() {
             val firebaseuser = FirebaseAuth.getInstance().currentUser
             val uid = firebaseuser?.uid
             val firebasadata = FirebaseDatabase.getInstance().getReference("/users").child(uid.toString())
-            val newRecipe: List<Recipe> = mutableListOf(
-                Recipe("", changedTitle, changedDescription, changedImage)
-            )
-            newRecipe.forEach {
-                val key = firebasadata.child("recipe").push().key
-                it.uid = key.toString()
-                firebasadata.child("recipe").child(key.toString()).setValue(it)
-                Log.d("TEST", changedImage)
-                finish()
+
+            val connectivityManager = baseContext.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+            val networkInfo = connectivityManager.activeNetworkInfo
+                if (networkInfo != null && networkInfo.isConnected) {
+                    if (networkInfo.type == ConnectivityManager.TYPE_WIFI) {
+                        val newRecipe: List<Recipe> = mutableListOf(
+                            Recipe("", changedTitle, changedDescription, changedImage)
+                        )
+                        newRecipe.forEach {
+                            val key = firebasadata.child("recipe").push().key
+                            it.uid = key.toString()
+                            firebasadata.child("recipe").child(key.toString()).setValue(it)
+                            finish()
+                        }
+                    }
+                    if (networkInfo.type == ConnectivityManager.TYPE_MOBILE) {
+                        val newRecipe: List<Recipe> = mutableListOf(
+                            Recipe("", changedTitle, changedDescription, changedImage)
+                        )
+                        newRecipe.forEach {
+                            val key = firebasadata.child("recipe").push().key
+                            it.uid = key.toString()
+                            firebasadata.child("recipe").child(key.toString()).setValue(it)
+                            finish()
+                        }
+                    }
+                }
+                else{
+                    Toast.makeText(baseContext, "No internet connection, recipe will not be saved", Toast.LENGTH_LONG).show()
+                    this.finish()
+                }
             }
         }
-    }
+
 
     var selectedPhotoUri: Uri? = null
     var selectedPhotoPath: String = ""

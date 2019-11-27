@@ -1,14 +1,11 @@
 package no.hiof.mariusrb.minkokebok.Screens
 
-import android.content.Context
 import android.content.Intent
-import android.net.ConnectivityManager
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.Menu
 import android.view.MenuItem
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
@@ -18,6 +15,7 @@ import com.google.firebase.database.ValueEventListener
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.ViewHolder
 import kotlinx.android.synthetic.main.activity_main.*
+import no.hiof.mariusrb.minkokebok.Login.LoginScreen
 import no.hiof.mariusrb.minkokebok.Login.RegisterScreen
 import no.hiof.mariusrb.minkokebok.Model.Recipe
 import no.hiof.mariusrb.minkokebok.Model.UserItem
@@ -33,7 +31,6 @@ class MainPage : AppCompatActivity() {
         verifyUserIsLoggedIn()
         fetchRecipes()
         Search()
-        network()
     }
 
     private fun Search(){
@@ -111,7 +108,7 @@ class MainPage : AppCompatActivity() {
         when (item.itemId) {
             R.id.menu_sign_out -> {
                 FirebaseAuth.getInstance().signOut()
-                val intent = Intent(this, RegisterScreen::class.java)
+                val intent = Intent(this, LoginScreen::class.java)
                 intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK.or(Intent.FLAG_ACTIVITY_NEW_TASK)
                 startActivity(intent)
             }
@@ -131,26 +128,6 @@ class MainPage : AppCompatActivity() {
     override fun onResume() {
         super.onResume()
         fetchRecipes()
-    }
-
-    //Because Firebase does most of the job for me, here is the code for checking internet connectivity
-    private fun network() {
-        val connectivityManager = baseContext.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
-        val networkInfo = connectivityManager.activeNetworkInfo
-
-        if (networkInfo != null && networkInfo.isConnected) {
-            if (networkInfo.type == ConnectivityManager.TYPE_WIFI) {
-                Toast.makeText(baseContext, "You are connected to Wifi!", Toast.LENGTH_SHORT).show()
-            }
-            if (networkInfo.type == ConnectivityManager.TYPE_MOBILE) {
-                Toast.makeText(baseContext, "You are connected to Mobile!", Toast.LENGTH_SHORT)
-                    .show()
-            }
-        }
-        else{
-            Toast.makeText(baseContext, "No internet connection", Toast.LENGTH_SHORT).show()
-            this.finish()
-        }
     }
 }
 

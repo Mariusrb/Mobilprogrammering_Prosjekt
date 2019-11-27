@@ -14,31 +14,41 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Screens.GoogleSearch"></activity>
+
+        <activity android:name=".Screens.GoogleSearch">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".Screens.MainPage"/>
+        </activity>
+
         <activity android:name=".Screens.RecipeDetail">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".Screens.MainPage" />
         </activity>
+
         <activity android:name=".Screens.EditRecipe" />
+
         <activity android:name=".Screens.NewRecipe">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".Screens.MainPage" />
         </activity>
+
         <activity android:name=".Screens.MainPage"
             android:windowSoftInputMode="stateAlwaysHidden">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
             </intent-filter>
         </activity>
+
         <activity android:name=".Login.RegisterScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity android:name=".Login.LoginScreen"/>
 
         <provider android:authorities="com.facebook.app.FacebookContentProvider{APP_ID}"
